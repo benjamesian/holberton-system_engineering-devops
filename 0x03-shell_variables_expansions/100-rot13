@@ -1,1 +1,2 @@
 #!/bin/bash
+tr [a-m] [n-z]
