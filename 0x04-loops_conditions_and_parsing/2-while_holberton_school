@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# print "Holberton School" 10 times to stdout
 i="0"
 while [ $i -lt 10 ] ; do
       echo "Holberton School"
