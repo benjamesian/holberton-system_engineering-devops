@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# select some fields from /etc/passwd
+while read -r ; do
+    echo "$REPLY" | cut -d: -f1,3,6
+done < /etc/passwd
