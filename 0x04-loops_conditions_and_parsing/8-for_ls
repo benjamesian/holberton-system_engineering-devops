@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# show files in current directory
+for i in * ; do
+    echo "$i" | cut -d'-' -f1 --complement
+done
