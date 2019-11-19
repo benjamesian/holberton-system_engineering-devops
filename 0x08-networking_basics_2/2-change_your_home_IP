@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# configure an ubuntu server so localhost and 8.8.8.8 resolve correctly
+cp /etc/hosts ~/hosts.new
+echo -e "127.0.0.2\tlocalhost\n8.8.8.8\t\tfacebook.com" >> ~/hosts.new
+# cat /etc/hosts >> ~/hosts.new
+cp -f ~/hosts.new /etc/hosts
+rm ~/hosts.new
