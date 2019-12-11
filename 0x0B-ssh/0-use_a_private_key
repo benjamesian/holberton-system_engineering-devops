@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 # comm
-ssh -i ~/.ssh/holberton ubuntu@34.73.7.93
+ssh -i ~/.ssh/holberton ubuntu@35.227.74.128
