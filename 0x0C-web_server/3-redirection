@@ -5,6 +5,6 @@ apt-get -y install nginx
 utf allow 'Nginx HTTP'
 
 echo "Holberton School" > /var/www/html/index.html
-new_string="location /redirect_me/ {\n\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n}"
+new_string="location /redirect_me {\n\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n}"
 sed -i "s:server_name _;:&\n\n$new_string:" "/etc/nignx/sites-available/default"
 service nginx start
