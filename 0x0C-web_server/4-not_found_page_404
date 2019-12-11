@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# add an error page
+apt-get -y update
+apt-get -y install nginx
+utf allow 'Nginx HTTP'
+
+service nginx start
