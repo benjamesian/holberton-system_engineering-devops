@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# configure a server with Nginx
+apt-get update
+apt-get install nginx
+ufw allow 'Nignx HTTP'
+echo "Holberton School" > /var/www/html/
