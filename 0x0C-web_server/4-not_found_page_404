@@ -2,7 +2,7 @@
 # add an error page
 apt-get -y update
 apt-get -y install nginx
-utf allow 'Nginx HTTP'
+ufw allow 'Nginx HTTP'
 echo "Holberton School" > /var/www/html/index.html
 sed -i "s:server_name _;/:&\n\n\terror_page 404 /custom_404.html;\n\tlocation = custom_404.html {\n\t\troot /usr/share/nginx/html;\n\t\tinternal;\n\t}\n:" /etc/nginx/sites-available/default
 service nginx restart
