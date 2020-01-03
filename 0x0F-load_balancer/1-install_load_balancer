@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# HAProxy setup
+apt-get -y install software-properties-common
+add-apt-repository -y ppa:vbernat/haproxy-1.5
+apt-get -y update
+apt-get -y install haproxy=1.5.\*
+echo "backend web-backend
+balance roundrobin
+server 808-web-01 35.196.185.47:80 check
+server 808-web-02 35.185.31.200:80 check
+frontend http
+bind *:80
+mode http
+default_backend web-backend
+" >> /etc/haproxy/haproxy.cfg
+service haproxy restart
