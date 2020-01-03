@@ -9,8 +9,3 @@ echo "Ceci n'est pas une page" > /usr/share/nginx/html/custom_404.html
 sed -i "/server_name _;/a error_page 404 /custom_404.html; location = /custom_404.html { root /usr/share/nginx/html; internal; }" /etc/nginx/sites-available/default
 sed -i "/server_name _;/a add_header X-Served_By $HOSTNAME;" /etc/nginx/sites-available/default
 service nginx restart
-
-
-location some-location {
-  add_header X-served-by my-header-content;
-}
