@@ -3,7 +3,7 @@
 
 display_info()
 {
-    dig +noall +answer "$SUB.$1" | awk -v SUB=$2 '{print "The subdomain " SUB " is a " $4 " record and points to " $5}'
+    dig +noall +answer "$2.$1" | awk -v SUB=$2 '{print "The subdomain " SUB " is a " $4 " record and points to " $5}'
 }
 
 if [ $# -eq 2 ]
