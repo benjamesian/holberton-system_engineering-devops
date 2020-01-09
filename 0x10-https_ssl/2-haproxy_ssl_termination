@@ -53,6 +53,8 @@ frontend www-http
 frontend www-https
 	 bind 35.237.26.232:443 ssl crt /etc/haproxy/ssl/lb-01.bencook.tech.pem
 	 reqadd X-Forwarded-Proto:\ https
+	 acl letsencrypt-acl path_beg /.well-known/acme-challenge/
+	 use_backend letsencrypt-backend if letsencrypt-acl
 	 mode https
 	 default_backend web-backend
 
