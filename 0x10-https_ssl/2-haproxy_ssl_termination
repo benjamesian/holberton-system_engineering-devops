@@ -47,11 +47,13 @@ defaults
 frontend www-http
 	 bind 35.237.26.232:80
 	 reqadd X-Forwarded-Proto:\ http
+	 mode http
 	 default_backend web-backend
 
 frontend www-https
 	 bind 35.237.26.232:443 ssl crt /etc/haproxy/ssl/lb-01.bencook.tech.pem
 	 reqadd X-Forwarded-Proto:\ https
+	 mode https
 	 default_backend web-backend
 
 backend web-backend
