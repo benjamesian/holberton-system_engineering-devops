@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# create a baskup
+mysqldump -u root -p"$1" --all-databases --master-data > backup.sql
+tar -czvf $(date +%m-%d-%Y).tar.gz backup.sql
