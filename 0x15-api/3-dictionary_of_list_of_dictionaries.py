@@ -3,6 +3,7 @@
 Write all user todos to a json.
 """
 
+from itertools import groupby
 import json
 import requests
 
@@ -11,19 +12,21 @@ if __name__ == '__main__':
     url = 'https://jsonplaceholder.typicode.com'
 
     users_resp = requests.get(url + '/users')
-    users_json = users_resp.json()
+    todos_resp = requests.get(url + '/todos')
+    users = users_resp.json()
+    todos = todos_resp.json()
     d = {}
-    for user in users_json:
-        USER_ID = user.get('id')
-        USERNAME = user.get('username')
-        todo_resp = requests.get(url + '/todos', params={'userId': USER_ID})
-        user_todos = todo_resp.json()
-        d[USER_ID] = [{'username': USERNAME,
-                       'task': todo.get('title'),
-                       'completed': todo.get('completed', False)
-                       } for todo in user_todos]
 
-    jsn = json.dumps(d)
+    user_todos = {k: list(v) for k, v in groupby(
+        todos, lambda todo: todo.get('userId'))}
+
+    for user in users:
+        USER_ID = user.get('id')
+        d[USER_ID] = [{
+            'username': user.get('username'),
+            'task': todo.get('title'),
+            'completed': todo.get('completed')
+        } for todo in user_todos[USER_ID]]
 
     with open('todo_all_employees.json', 'w') as f:
-        f.write(jsn)
+        json.dump(d, f)
