@@ -15,11 +15,11 @@ if __name__ == '__main__':
     todos_resp = requests.get(url + '/todos')
     users = users_resp.json()
     todos = todos_resp.json()
-    d = {}
 
     user_todos = {k: list(v) for k, v in groupby(
         todos, lambda todo: todo.get('userId'))}
 
+    d = {}
     for user in users:
         USER_ID = user.get('id')
         d[USER_ID] = [{
