@@ -10,6 +10,7 @@ RAW_URL = 'https://www.reddit.com/r/{:s}/hot.json'
 
 def count_words(subreddit, word_list, after='', counts={}):
     """Get the titles of the top ten hottest posts on a subreddit."""
+    word_list = list(map(lambda x: x.casefold(), word_list))
     headers = {'User-Agent': ''}
     url = RAW_URL.format(subreddit)
     params = {'limit': 100}
@@ -34,9 +35,9 @@ def count_words(subreddit, word_list, after='', counts={}):
 
     title_words = ' '.join(hot_titles).split(' ')
     for word in title_words:
-        for w in word_list:
-            if word.casefold() == w.casefold():
-                counts[word] = counts.get(word, 0) + 1
+        lower = word.casefold()
+        if lower in word_list:
+            counts[lower] = counts.get(lower, 0) + 1
 
     if hot_titles:
         after = data.get('after', '')
