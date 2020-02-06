@@ -5,7 +5,7 @@ Check titles of hot posts in a subreddit.
 
 import requests
 
-RAW_URL = 'https://reddit.com/r/{:s}/hot.json'
+RAW_URL = 'https://www.reddit.com/r/{:s}/hot.json'
 
 
 def top_ten(subreddit):
