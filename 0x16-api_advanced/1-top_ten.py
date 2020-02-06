@@ -13,11 +13,15 @@ def top_ten(subreddit):
     headers = {'User-agent': 'py3'}
     params = {'limit': 10}
     resp = requests.get(RAW_URL.format(subreddit),
-               headers=headers,
-               params=params,
-               allow_redirects=False)
-    hot_posts = resp.json().get('data', {}).get('children', [])
-    if resp.status_code != 200 or not hot_posts:
+                        headers=headers,
+                        params=params,
+                        allow_redirects=False)
+    if resp.status_code != 200:
         print('None')
-    for post in hot_posts:
-        print(post.get('data', {}).get('title'))
+        return
+    hot_posts = resp.json().get('data', {}).get('children', [])
+    if not hot_posts:
+        print('None')
+    else:
+        for post in hot_posts:
+            print(post.get('data', {}).get('title'))
