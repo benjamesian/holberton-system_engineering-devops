@@ -20,8 +20,5 @@ def top_ten(subreddit):
         print('None')
         return
     hot_posts = resp.json().get('data', {}).get('children', [])
-    if not hot_posts:
-        print('None')
-    else:
-        for post in hot_posts:
-            print(post.get('data', {}).get('title'))
+    for post in hot_posts:
+        print(post.get('data', {}).get('title'))
