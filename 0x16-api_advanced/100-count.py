@@ -4,20 +4,24 @@ Check titles of hot posts in a subreddit.
 """
 
 from requests import request
-from sys import argv
 
-RAW_URL = 'http://reddit.com/r/{:s}/hot.json'
+RAW_URL = 'http://www.reddit.com/r/{:s}/hot.json'
 
 
 def count_words(subreddit, word_list, after='', counts={}):
     """Get the titles of the top ten hottest posts on a subreddit."""
-    headers = {'User-agent': 'py3'}
+    headers = {'User-Agent': 'py3'}
     url = RAW_URL.format(subreddit)
     params = {'limit': 100}
     if after:
         params['after'] = after
 
-    resp = request('GET', url, headers=headers, params=params)
+    resp = request('GET',
+                   url,
+                   headers=headers,
+                   params=params,
+                   allow_redirects=False,
+                   timeout=10)
     if resp.status_code != 200:
         return
 
@@ -40,7 +44,6 @@ def count_words(subreddit, word_list, after='', counts={}):
 
     word_list.sort()
     word_list.sort(key=(lambda a: -counts.get(a, 0)))
-    word_list = list(filter(lambda x: x in counts, word_list))
     if word_list:
         for word in word_list:
             if word in counts:
