@@ -5,7 +5,7 @@ Check titles of hot posts in a subreddit.
 
 from requests import request
 
-RAW_URL = 'http://www.reddit.com/r/{:s}/hot.json'
+RAW_URL = 'https://www.reddit.com/r/{:s}/hot.json'
 
 
 def count_words(subreddit, word_list, after='', counts={}):
