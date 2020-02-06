@@ -38,7 +38,9 @@ def count_words(subreddit, word_list, after='', counts={}):
         if after:
             return count_words(subreddit, word_list, after, counts)
 
+    word_list.sort()
     word_list.sort(key=(lambda a: -counts.get(a, 0)))
+    word_list = list(filter(lambda x: x in counts, word_list))
     if word_list:
         for word in word_list:
             print(word)
