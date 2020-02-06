@@ -23,6 +23,7 @@ def count_words(subreddit, word_list, after='', counts={}):
                    allow_redirects=False,
                    timeout=10)
     if resp.status_code != 200:
+        print()
         return
 
     data = resp.json().get('data', {})
