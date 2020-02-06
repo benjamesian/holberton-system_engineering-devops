@@ -3,7 +3,7 @@
 Check titles of hot posts in a subreddit.
 """
 
-from requests import get
+import requests
 
 RAW_URL = 'http://reddit.com/r/{:s}/hot.json'
 
@@ -12,7 +12,7 @@ def top_ten(subreddit):
     """Get the titles of the top ten hottest posts on a subreddit."""
     headers = {'User-agent': 'py3'}
     params = {'limit': 10}
-    resp = get(RAW_URL.format(subreddit),
+    resp = requests.get(RAW_URL.format(subreddit),
                headers=headers,
                params=params,
                allow_redirects=False)
