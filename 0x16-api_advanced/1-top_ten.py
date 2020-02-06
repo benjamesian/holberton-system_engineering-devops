@@ -4,7 +4,6 @@ Check titles of hot posts in a subreddit.
 """
 
 from requests import get
-from sys import argv
 
 RAW_URL = 'http://reddit.com/r/{:s}/hot.json'
 
@@ -17,7 +16,7 @@ def top_ten(subreddit):
                headers=headers,
                params=params,
                allow_redirects=False)
-    hot_posts = resp.json().get('data', {}).get('children', {})
+    hot_posts = resp.json().get('data', {}).get('children', [])
     if resp.status_code != 200 or not hot_posts:
         print('None')
     for post in hot_posts:
