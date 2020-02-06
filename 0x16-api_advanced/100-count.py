@@ -19,7 +19,7 @@ def count_words(subreddit, word_list, after='', counts={}):
 
     resp = request('GET', url, headers=headers, params=params)
     if resp.status_code != 200:
-        return hot_list or None
+        return
 
     data = resp.json().get('data', {})
 
@@ -43,6 +43,7 @@ def count_words(subreddit, word_list, after='', counts={}):
     word_list = list(filter(lambda x: x in counts, word_list))
     if word_list:
         for word in word_list:
-            print(word)
+            if word in counts:
+                print('{:s}: {:d}'.format(word, counts[word]))
     else:
         print()
