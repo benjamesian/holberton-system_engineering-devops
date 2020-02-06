@@ -34,9 +34,9 @@ def count_words(subreddit, word_list, after='', counts={}):
 
     title_words = ' '.join(hot_titles).split(' ')
     for word in title_words:
-        lower = word.lower()
-        if lower in word_list:
-            counts[lower] = counts.get(lower, 0) + 1
+        for w in word_list:
+            if word.casefold() == w.casefold():
+                counts[word] = counts.get(word, 0) + 1
 
     if hot_titles:
         after = data.get('after', '')
