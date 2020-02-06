@@ -10,6 +10,10 @@ RAW_URL = 'https://www.reddit.com/r/{:s}/hot.json'
 
 def count_words(subreddit, word_list, after='', counts={}):
     """Get the titles of the top ten hottest posts on a subreddit."""
+    if not word_list or not subreddit:
+        print()
+        return
+
     word_list = list(map(lambda x: x.casefold(), word_list))
     headers = {'User-Agent': ''}
     url = RAW_URL.format(subreddit)
