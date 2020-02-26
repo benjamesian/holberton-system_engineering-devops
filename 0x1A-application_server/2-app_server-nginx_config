@@ -50,11 +50,19 @@ server {
 	rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
 
 	location / {
-		include proxy_params;
-		proxy_pass http://unix:/home/ubuntu/AirBnB_clone_v2/AirBnB_clone_v2.sock;
 		# First attempt to serve request as file, then
 		# as directory, then fall back to displaying a 404.
-		#try_files $uri $uri/ =404;
+		try_files $uri $uri/ =404;
+	}
+
+	location /airbnb-onepage {
+		include proxy_params;
+		proxy_pass http://unix:/home/ubuntu/AirBnB_clone_v2/AirBnB_clone_v2.sock;
+	}
+
+	location /airbnb-dynamic {
+		include proxy_params;
+		proxy_pass http://35.237.192.177:5001;
 	}
 
 	# pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
